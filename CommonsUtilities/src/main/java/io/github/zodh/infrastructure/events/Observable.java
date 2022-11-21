@@ -8,23 +8,39 @@ import org.springframework.context.ApplicationEvent;
 
 public abstract class Observable extends ApplicationEvent {
 
-  private String observableSubjectsMapPath = "C:\\Users\\Felipe\\Desktop\\Projetos\\Pessoal\\barbershop\\barbershop-manager\\src\\main\\resources\\observable_subjects_map.csv";
+  protected String observableSubjectsMapPath;
   
   protected final String subjectName;
 
-  protected final FileReader reader;
+  protected final FileReader fileReader;
 
-  protected String cause;
+  protected String eventReason;
 
-  protected Observable(Object context, String subjectName, FileReader fileReader) {
+  protected Observable(Object context, String subjectName, FileReader fileReader, String observableSubjectsMapPath) {
     super(context);
     this.subjectName = subjectName;
-    this.reader = fileReader;
+    this.fileReader = fileReader;
+    this.observableSubjectsMapPath = observableSubjectsMapPath;
+    if (Boolean.TRUE.equals(isNotRegistered())) {
+      throw new RuntimeException(String.format("You are not able to work with %s subject! It must be registered in Observable Subjects!", subjectName));
+    }
   }
 
   public Boolean isRegistered() {
-    Map<String, String> recordsMap = (HashMap<String, String>)  reader.getContent(getRecordsMap());
+    Map<String, String> recordsMap = (HashMap<String, String>)  fileReader.getContent(getRecordsMap());
     return recordsMap.get(subjectName) != null && recordsMap.get(subjectName).equals(Boolean.TRUE.toString());
+  }
+
+  public Boolean isNotRegistered() {
+    return !isRegistered();
+  }
+
+  public String getEventReason() {
+    return eventReason;
+  }
+
+  public void setEventReason(String eventReason) {
+    this.eventReason = eventReason;
   }
 
   private File getRecordsMap() {
