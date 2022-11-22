@@ -5,11 +5,11 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ValueEvaluation {
 
-  private ValueEvaluation () {
+  private ValueEvaluation() {
 
   }
 
-  public static <T> Boolean isNullSafeEval (Supplier<T> function) {
+  public static <T> Boolean isNullSafeEval(Supplier<T> function) {
     try {
       return function.get() == null;
     } catch (NullPointerException exception) {
@@ -17,11 +17,19 @@ public class ValueEvaluation {
     }
   }
 
-  public static <T> Boolean isNotNullSafeEval (Supplier<T> function) {
+  public static <T> Boolean isNull(T object) {
+    return object == null;
+  }
+
+  public static <T> Boolean isNotNullSafeEval(Supplier<T> function) {
     return !isNullSafeEval(function);
   }
 
-  public static <T> Boolean nonNullSafeEval (Supplier<T> function) {
+  public static <T> Boolean isNotNull(T object) {
+    return !isNull(object);
+  }
+
+  public static <T> Boolean nonNullSafeEval(Supplier<T> function) {
     try {
       return !isNullSafeEval(function);
     } catch (NullPointerException exception) {
@@ -29,12 +37,16 @@ public class ValueEvaluation {
     }
   }
 
-  public static <T> Boolean isBlankSafeEval (Supplier<T> function) {
+  public static <T> Boolean isBlankSafeEval(Supplier<T> function) {
     try {
       return StringUtils.isBlank((String) function.get());
     } catch (Exception exception) {
       return true;
     }
+  }
+
+  public static Boolean isBlank(String value) {
+    return StringUtils.isBlank(value);
   }
 
   public static <T> Boolean isNotBlankSafeEval(Supplier<T> function) {
@@ -43,6 +55,10 @@ public class ValueEvaluation {
     } catch (Exception exception) {
       return false;
     }
+  }
+
+  public static Boolean isNotBlank(String value) {
+    return StringUtils.isNotBlank(value);
   }
 
 }
