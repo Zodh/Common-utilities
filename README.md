@@ -1,6 +1,6 @@
 # Frameworks e funcionalidades para utilizar em qualquer projeto
 
-## [1 - Eventos, Observer pattern com Spring Events](CommonsUtilities\src\main\java\io\github\zodh\infrastructure\events)
+## [1 - Eventos, Observer pattern com Spring Events](CommonsUtilities/src/main/java/io/github/zodh/infrastructure/events)
 
 - Módulo que possibilita a implementação rápida de um evento com nome e razão. Possibilita também adotar estratégias para sistemas de inscrições.
 
