@@ -1,4 +1,4 @@
-package io.github.zodh.observer;
+package io.github.zodh.adapters.observer;
 
 import org.springframework.context.ApplicationEvent;
 

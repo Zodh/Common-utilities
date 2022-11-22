@@ -1,4 +1,4 @@
-package io.github.zodh.observer;
+package io.github.zodh.adapters.observer;
 
 public interface Searchable <T extends Observable> {
 

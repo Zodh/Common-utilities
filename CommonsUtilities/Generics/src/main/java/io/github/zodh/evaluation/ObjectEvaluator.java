@@ -3,9 +3,9 @@ package io.github.zodh.evaluation;
 import java.util.function.Supplier;
 import org.apache.commons.lang3.StringUtils;
 
-public class ValueEvaluation {
+public class ObjectEvaluator {
 
-  private ValueEvaluation() {
+  private ObjectEvaluator() {
 
   }
 

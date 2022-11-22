@@ -1,4 +1,4 @@
-package io.github.zodh.io;
+package io.github.zodh.infrastructure.io;
 
 public enum FileExtension {
 

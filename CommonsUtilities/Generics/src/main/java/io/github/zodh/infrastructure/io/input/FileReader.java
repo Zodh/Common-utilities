@@ -1,6 +1,6 @@
-package io.github.zodh.io.input;
+package io.github.zodh.infrastructure.io.input;
 
-import io.github.zodh.io.FileExtension;
+import io.github.zodh.infrastructure.io.FileExtension;
 import java.io.File;
 
 public abstract class FileReader implements Reader {

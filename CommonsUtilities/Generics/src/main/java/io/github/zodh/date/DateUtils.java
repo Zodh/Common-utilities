@@ -3,19 +3,25 @@ package io.github.zodh.date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import org.springframework.format.datetime.standard.InstantFormatter;
 
-public class DateTimeUtils {
+public class DateUtils {
 
-  private DateTimeUtils() {}
+  private DateUtils() {}
 
   public static final String ISO_8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+  public static final String ZONE_ID_ETC_UTC = "Etc/UTC";
+  public static final String DD_MM_YYYY_PATTERN = "dd-MM-yyyy";
 
   public static String generateISO8601Timestamp() {
     var timezone = TimeZone.getTimeZone("UTC");
@@ -25,13 +31,12 @@ public class DateTimeUtils {
   }
 
   public static String fromEpochTimeToISO8601Timestamp(String epochDate) {
-    var zoneId = "Etc/UTC";
     var offsetDateTime = OffsetDateTime.ofInstant(Instant.ofEpochSecond(Long.parseLong(epochDate)),
-        ZoneId.of(zoneId));
+        ZoneId.of(ZONE_ID_ETC_UTC));
     var dateTimeFormatter = new DateTimeFormatterBuilder()
         .appendPattern(ISO_8601_PATTERN)
         .toFormatter()
-        .withZone(ZoneId.of(zoneId));
+        .withZone(ZoneId.of(ZONE_ID_ETC_UTC));
     return dateTimeFormatter.format(offsetDateTime);
   }
 
@@ -42,6 +47,20 @@ public class DateTimeUtils {
     } catch (ParseException e) {
       throw new IllegalArgumentException("Invalid ISO 8601 Timestamp");
     }
+  }
+
+  public static String getStringDateNowAsDDMMYYYY() {
+    return new DateTimeFormatterBuilder()
+        .appendPattern(DD_MM_YYYY_PATTERN)
+        .toFormatter()
+        .withZone(ZoneId.of(ZONE_ID_ETC_UTC)).format(Instant.now());
+  }
+
+  public static String getStringDateAsDDMMYYYY(int day, int month, int year) {
+    return new DateTimeFormatterBuilder()
+        .appendPattern(DD_MM_YYYY_PATTERN)
+        .toFormatter()
+        .withZone(ZoneId.of(ZONE_ID_ETC_UTC)).format(LocalDate.of(year, month, day));
   }
 
 }
