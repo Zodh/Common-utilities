@@ -1,4 +1,4 @@
-package io.github.zodh.infrastructure.events;
+package io.github.zodh.observer;
 
 public interface Searchable <T extends Observable> {
 

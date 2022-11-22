@@ -1,4 +1,4 @@
-package io.github.zodh.infrastructure.events;
+package io.github.zodh.observer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

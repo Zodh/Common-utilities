@@ -1,6 +1,6 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
-import io.github.zodh.infrastructure.io.FileExtension;
+import io.github.zodh.io.FileExtension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

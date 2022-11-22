@@ -1,4 +1,4 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
 import java.io.File;
 

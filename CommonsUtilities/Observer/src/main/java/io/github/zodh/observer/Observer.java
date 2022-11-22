@@ -1,7 +1,6 @@
-package io.github.zodh.infrastructure.events;
+package io.github.zodh.observer;
 
-import static io.github.zodh.utils.evaluation.ValueEvaluation.isNotNullSafeEval;
-
+import io.github.zodh.evaluation.ValueEvaluation;
 import org.springframework.context.ApplicationListener;
 
 public abstract class Observer <T extends Observable> implements ApplicationListener<T>, Searchable<T>{
@@ -11,7 +10,7 @@ public abstract class Observer <T extends Observable> implements ApplicationList
       throw new RuntimeException("It is not possible to get an object with null identifier");
     }
     T subject = peek(identifier);
-    if (Boolean.TRUE.equals(isNotNullSafeEval(subject::getClass)) && subject.getClass().isAnnotationPresent(Identifiable.class)) {
+    if (Boolean.TRUE.equals(ValueEvaluation.isNotNullSafeEval(subject::getClass)) && subject.getClass().isAnnotationPresent(Identifiable.class)) {
       throw new RuntimeException("It is not possible to get an object without @Identifiable annotation");
     }
     return subject;

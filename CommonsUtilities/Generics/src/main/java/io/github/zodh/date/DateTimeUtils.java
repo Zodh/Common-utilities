@@ -1,4 +1,4 @@
-package io.github.zodh.utils.date;
+package io.github.zodh.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

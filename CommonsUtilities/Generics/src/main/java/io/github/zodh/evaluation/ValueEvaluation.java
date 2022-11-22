@@ -1,4 +1,4 @@
-package io.github.zodh.utils.evaluation;
+package io.github.zodh.evaluation;
 
 import java.util.function.Supplier;
 import org.apache.commons.lang3.StringUtils;

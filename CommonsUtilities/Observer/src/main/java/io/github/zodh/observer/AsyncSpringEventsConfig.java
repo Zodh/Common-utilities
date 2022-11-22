@@ -1,4 +1,4 @@
-package io.github.zodh.infrastructure.events;
+package io.github.zodh.observer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
