@@ -4,12 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -17,7 +14,8 @@ import org.springframework.format.datetime.standard.InstantFormatter;
 
 public class DateUtils {
 
-  private DateUtils() {}
+  private DateUtils() {
+  }
 
   public static final String ISO_8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
   public static final String ZONE_ID_ETC_UTC = "Etc/UTC";
