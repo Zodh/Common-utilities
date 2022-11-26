@@ -37,20 +37,12 @@ public class ObjectEvaluator {
     }
   }
 
-  public static Boolean isBlank(String value) {
-    return StringUtils.isBlank(value);
-  }
-
   public static <T> Boolean isNotBlankSafeEval(Supplier<T> function) {
     try {
       return !isBlankSafeEval(function);
     } catch (Exception exception) {
       return false;
     }
-  }
-
-  public static Boolean isNotBlank(String value) {
-    return StringUtils.isNotBlank(value);
   }
 
 }

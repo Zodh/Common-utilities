@@ -75,41 +75,6 @@ class ObjectEvaluatorTest {
   }
 
   @Test
-  @DisplayName("Should verify if string is empty and return true")
-  void givenEmptyStringWhenVerifyIfIsBlankThenReturnTrue() {
-    // act and assert
-    assertThat(ObjectEvaluator.isBlank("   ")).isTrue();
-  }
-
-  @Test
-  @DisplayName("Should verify if string is null and return true")
-  void givenNullWhenVerifyIfIsBlankThenReturnTrue() {
-    // act and assert
-    assertThat(ObjectEvaluator.isBlank(null)).isTrue();
-  }
-
-  @Test
-  @DisplayName("Should verify if string is only whitespaces and return true")
-  void givenStringWithWhitespaceOnlyWhenVerifyIfIsBlankThenReturnTrue() {
-    // act and assert
-    assertThat(ObjectEvaluator.isBlank("   ")).isTrue();
-  }
-
-  @Test
-  @DisplayName("Should verify if string is only whitespaces and return false")
-  void givenStringWithWhitespaceOnlyWhenVerifyIfIsNotBlankThenReturnFalse() {
-    // act and assert
-    assertThat(ObjectEvaluator.isNotBlank("   ")).isFalse();
-  }
-
-  @Test
-  @DisplayName("Should verify if string has something and return true")
-  void givenStringWithWhitespaceOnlyWhenVerifyIfIsNotBlankThenReturnTrue() {
-    // act and assert
-    assertThat(ObjectEvaluator.isNotBlank("t")).isTrue();
-  }
-
-  @Test
   @DisplayName("Should verify if string is empty and return true (safe evaluation)")
   void givenEmptyStringWhenVerifyIfIsBlankSafeEvalThenReturnTrue() {
     // act and assert
