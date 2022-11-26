@@ -56,7 +56,7 @@ class DateUtilsTest {
     assertThat(localDateTime.getDayOfMonth()).isEqualTo(25);
     assertThat(localDateTime.getMonth()).isEqualTo(Month.NOVEMBER);
     assertThat(localDateTime.getYear()).isEqualTo(2022);
-    assertThat(localDateTime.getHour()).isEqualTo(04);
+    assertThat(localDateTime.getHour()).isEqualTo(4L);
     assertThat(localDateTime.getMinute()).isEqualTo(11);
     assertThat(localDateTime.getSecond()).isEqualTo(57);
   }
