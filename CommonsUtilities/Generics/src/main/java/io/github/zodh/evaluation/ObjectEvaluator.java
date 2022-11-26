@@ -11,7 +11,7 @@ public class ObjectEvaluator {
 
   public static <T> Boolean isNullSafeEval(Supplier<T> function) {
     try {
-      return function.get() == null;
+      return isNull(function.get());
     } catch (NullPointerException exception) {
       return true;
     }
@@ -27,14 +27,6 @@ public class ObjectEvaluator {
 
   public static <T> Boolean isNotNull(T object) {
     return !isNull(object);
-  }
-
-  public static <T> Boolean nonNullSafeEval(Supplier<T> function) {
-    try {
-      return !isNullSafeEval(function);
-    } catch (NullPointerException exception) {
-      return false;
-    }
   }
 
   public static <T> Boolean isBlankSafeEval(Supplier<T> function) {
