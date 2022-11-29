@@ -34,17 +34,26 @@ public abstract class FileReader implements Reader {
     if (file == null) {
       throw new NullPointerException("Is not possible to check extension of a null file");
     }
-    if (file.getAbsolutePath().contains(FileExtension.CSV.getFileExtension())) {
-      return FileExtension.CSV;
+    var len = file.getAbsolutePath().length();
+    var fourLen = file.getAbsolutePath().substring(len - 3, len);
+    var fiveLen = file.getAbsolutePath().substring(len - 4, len);
+    var acceptableExtensions = FileExtension.getAcceptableExtensions();
+    if (acceptableExtensions.contains(fourLen)) {
+      return FileExtension.fromValue(fourLen);
     }
-    if (file.getAbsolutePath().contains(FileExtension.TXT.getFileExtension())) {
-      return FileExtension.TXT;
+    if (acceptableExtensions.contains(fiveLen)) {
+      return FileExtension.fromValue(fiveLen);
     }
-    throw new RuntimeException("Unhandled file extension");
+    throw new IllegalArgumentException(String.format("Unhandled file extension: %s or %s", fourLen, fiveLen));
   }
 
   protected String getFileName(final File file) {
     return "File name: " + file.getName();
   }
 
+  public abstract Boolean isValidFile(final File file);
+
+  public Boolean isInvalidFile(final File file) {
+    return !isValidFile(file);
+  }
 }

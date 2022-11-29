@@ -25,7 +25,7 @@ public class CSVReader extends FileReader {
   public CSVReader() {}
 
   @Override
-  public Boolean isValid(File file) {
+  public Boolean isValidFile(File file) {
     return file != null && getFileExtension(file) == FileExtension.CSV;
   }
 
@@ -47,7 +47,7 @@ public class CSVReader extends FileReader {
   }
 
   protected void checkIfIsValidCSVFile(final File file) {
-    if (Boolean.TRUE.equals(isNotValid(file))) {
+    if (Boolean.TRUE.equals(isInvalidFile(file))) {
       throw new RuntimeException(ONLY_CSV);
     }
   }
