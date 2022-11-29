@@ -37,14 +37,12 @@ public abstract class FileReader implements Reader {
     var len = file.getAbsolutePath().length();
     var fourLen = file.getAbsolutePath().substring(len - 3, len);
     var fiveLen = file.getAbsolutePath().substring(len - 4, len);
-    var acceptableExtensions = FileExtension.getAcceptableExtensions();
-    if (acceptableExtensions.contains(fourLen)) {
-      return FileExtension.fromValue(fourLen);
+    var result = (fourLen.charAt(0) == '.') ? fourLen : fiveLen;
+    try {
+      return FileExtension.fromValue(result);
+    } catch (Exception exception) {
+      throw new IllegalArgumentException(String.format("Unhandled file extension: %s or %s", fourLen, fiveLen));
     }
-    if (acceptableExtensions.contains(fiveLen)) {
-      return FileExtension.fromValue(fiveLen);
-    }
-    throw new IllegalArgumentException(String.format("Unhandled file extension: %s or %s", fourLen, fiveLen));
   }
 
   protected String getFileName(final File file) {

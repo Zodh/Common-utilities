@@ -17,10 +17,6 @@ public enum FileExtension {
     return fileExtension;
   }
 
-  public static List<String> getAcceptableExtensions() {
-    return List.of(CSV.getFileExtension(), TXT.getFileExtension());
-  }
-
   public static FileExtension fromValue(String string) {
     var values = values();
     for (int i = 0; i != values.length; i++) {
