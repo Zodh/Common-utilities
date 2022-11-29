@@ -22,6 +22,7 @@ public class CSVMapReader extends CSVReader {
 
   @Override
   public Map<String, String> read(File file) {
+    checkIfIsValidCSVFile(file);
     try {
       List<String> records = new ArrayList<>();
       Scanner sc = new Scanner(file);

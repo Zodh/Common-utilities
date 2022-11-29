@@ -7,23 +7,31 @@ import java.util.Scanner;
 
 public class CSVReader extends FileReader {
 
+  protected static final String ONLY_CSV = "This reader only accepts .CSV files";
+
   protected String delimiter = ",";
 
   public CSVReader(File file) {
     super(file);
-    checkIfFileIsACSV();
+    checkIfIsValidCSVFile(file);
   }
 
   public CSVReader(File file, String customDelimiter) {
     super(file);
-    checkIfFileIsACSV();
+    checkIfIsValidCSVFile(file);
     this.delimiter = customDelimiter;
   }
 
   public CSVReader() {}
 
   @Override
+  public Boolean isValid(File file) {
+    return file != null && getFileExtension(file) == FileExtension.CSV;
+  }
+
+  @Override
   public Object read(File file) {
+    checkIfIsValidCSVFile(file);
     try {
       StringBuilder sb = new StringBuilder();
       Scanner sc = new Scanner(file);
@@ -38,9 +46,9 @@ public class CSVReader extends FileReader {
     }
   }
 
-  private void checkIfFileIsACSV() {
-    if (file != null && getFileExtension(file) != FileExtension.CSV) {
-      throw new RuntimeException("File extension is not CSV. " + getFileName(file));
+  protected void checkIfIsValidCSVFile(final File file) {
+    if (Boolean.TRUE.equals(isNotValid(file))) {
+      throw new RuntimeException(ONLY_CSV);
     }
   }
 
