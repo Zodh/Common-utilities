@@ -47,7 +47,7 @@ public class CSVReader extends FileReader {
   }
 
   protected void checkIfIsValidCSVFile(final File file) {
-    if (Boolean.TRUE.equals(isInvalidFile(file))) {
+    if (isInvalidFile(file)) {
       throw new RuntimeException(ONLY_CSV);
     }
   }
