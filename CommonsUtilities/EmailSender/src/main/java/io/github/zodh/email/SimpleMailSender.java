@@ -8,13 +8,13 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailServiceImpl implements EmailService {
+public class SimpleMailSender implements EmailService {
 
   private JavaMailSender javaMailSender;
 
   private List<MailMessageValidator> mailMessageValidators;
 
-  public EmailServiceImpl(JavaMailSender javaMailSender,
+  public SimpleMailSender(JavaMailSender javaMailSender,
       List<MailMessageValidator> mailMessageValidators) {
     this.javaMailSender = javaMailSender;
     this.mailMessageValidators = mailMessageValidators;
@@ -24,14 +24,6 @@ public class EmailServiceImpl implements EmailService {
   public void send(SimpleMailMessage simpleMailMessage) {
     checkSimpleMailEssentialFields(simpleMailMessage);
     javaMailSender.send(simpleMailMessage);
-  }
-
-  @Override
-  public void sendSimpleMail(String from, String to, String subject, String text) {
-    var simpleMessage = new SimpleMail().buildDefaultMessage(
-        from, to, subject, text
-    );
-    this.send(simpleMessage);
   }
 
   private void checkSimpleMailEssentialFields(SimpleMailMessage simpleMailMessage) {
