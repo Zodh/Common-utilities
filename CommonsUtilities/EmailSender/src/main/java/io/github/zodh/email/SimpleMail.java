@@ -10,7 +10,8 @@ public class SimpleMail {
     return new SimpleMailBuilder();
   }
 
-  public SimpleMailMessage buildDefaultMessage(String from, String to, String subject, String text) {
+  public SimpleMailMessage buildDefaultMessage(String from, String to, String subject,
+      String text) {
     return builder().from(from).to(to).subject(subject).text(text).build();
   }
 
@@ -48,7 +49,9 @@ public class SimpleMail {
 
     private void checkIfIsValidStringField(String value, String fieldName) {
       if (StringUtils.isBlank(value)) {
-        throw new InvalidParameterException(String.format("Error trying to set '%s' for a simple mail message. It could not be empty, null or only whitespaces.", fieldName));
+        throw new InvalidParameterException(String.format(
+            "Error trying to set '%s' for a simple mail message. It could not be empty, null or only whitespaces.",
+            fieldName));
       }
     }
 
