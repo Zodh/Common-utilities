@@ -51,7 +51,7 @@ public class DateUtils {
     return new DateTimeFormatterBuilder()
         .appendPattern(DD_MM_YYYY_PATTERN)
         .toFormatter()
-        .withZone(ZoneId.of(ZONE_ID_ETC_UTC)).format(Instant.now());
+        .withZone(ZoneId.of(ZoneId.systemDefault().toString())).format(Instant.now());
   }
 
   public static String getStringDateAsDDMMYYYY(int day, int month, int year) {
