@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.InputMismatchException;
 
 public class TXTReader extends FileReader {
 
@@ -16,13 +17,13 @@ public class TXTReader extends FileReader {
 
     @Override
     public Object read(File file) {
-        if (!isValidFile(file)) {
-            throw new RuntimeException("Invalid file. This reader only accepts .txt file");
+        if (isInvalidFile(file)) {
+            throw new IllegalArgumentException("Invalid file. This reader only accepts .txt file");
         }
         try (var fis = new FileInputStream(file)){
             return new String(fis.readAllBytes(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new InputMismatchException("Error trying to read the file.");
         }
     }
 }

@@ -1,6 +1,8 @@
 package io.github.zodh.infrastructure.io.input;
 
 import io.github.zodh.infrastructure.io.FileExtension;
+import io.github.zodh.infrastructure.io.InvalidFileException;
+
 import java.io.File;
 
 public abstract class FileReader implements Reader {
@@ -9,7 +11,7 @@ public abstract class FileReader implements Reader {
 
   protected FileReader (File file) {
     if (file != null && !file.canRead()) {
-      throw new RuntimeException("The input file cannot be read. Make sure you have the necessary permissions to read the file.");
+      throw new IllegalArgumentException("The input file cannot be read. Make sure you have the necessary permissions to read the file.");
     }
     this.file = file;
   }
@@ -26,6 +28,9 @@ public abstract class FileReader implements Reader {
   public Object getContent() {
     if (this.file == null) {
       throw new NullPointerException("File was not loaded in Reader constructor");
+    }
+    if (isInvalidFile(this.file)) {
+      throw new InvalidFileException(file);
     }
     return getContent(this.file);
   }
