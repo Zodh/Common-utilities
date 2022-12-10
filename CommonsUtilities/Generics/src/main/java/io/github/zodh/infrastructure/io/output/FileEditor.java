@@ -4,11 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import static io.github.zodh.evaluation.ObjectEvaluator.isNull;
 
-public abstract class FileWriter<T> implements Writer<T> {
+public abstract class FileEditor<T> implements Writer<T> {
 
     private final T source;
 
-    protected FileWriter(T source) {
+    protected FileEditor(T source) {
         if (isNull(source)) {
             throw new NullPointerException("Source can not be null");
         }

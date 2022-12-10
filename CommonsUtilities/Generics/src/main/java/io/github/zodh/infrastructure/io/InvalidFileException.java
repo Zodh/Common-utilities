@@ -10,4 +10,8 @@ public class InvalidFileException extends RuntimeException {
         super(FileEvaluator.getFileInformation(file));
     }
 
+    public InvalidFileException(File file, String additionalMessage) {
+        super(FileEvaluator.getFileInformation(file) + " - " + "Additional Information: " + additionalMessage);
+    }
+
 }
