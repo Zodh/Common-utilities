@@ -1,5 +1,6 @@
 package io.github.zodh.infrastructure.io.output;
 
+import io.github.zodh.infrastructure.io.FileExtension;
 import io.github.zodh.infrastructure.io.InvalidFileException;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,6 +20,9 @@ public class TXTEditor extends FileEditor<String> {
 
   @Override
   protected void write(String data, File file) {
+    if (FileExtension.getFileExtension(file) != FileExtension.TXT) {
+      throw new InvalidFileException(file, "Invalid file extension. It must be .txt");
+    }
     try (var fileOutputStream = new FileOutputStream(file)) {
       fileOutputStream.write(data.getBytes(StandardCharsets.UTF_8));
     } catch (Exception exception) {
