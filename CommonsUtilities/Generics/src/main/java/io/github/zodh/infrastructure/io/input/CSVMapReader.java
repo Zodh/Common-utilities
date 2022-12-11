@@ -18,16 +18,17 @@ public class CSVMapReader extends CSVReader {
     super(file, customDelimiter);
   }
 
-  public CSVMapReader() {}
+  public CSVMapReader() {
+  }
 
   @Override
-  public Map<String, String> read(File file) {
+  protected Map<String, String> read(File file) {
     checkIfIsValidCSVFile(file);
     try {
       List<String> records = new ArrayList<>();
       Scanner sc = new Scanner(file);
       sc.useDelimiter(delimiter);
-      while (sc.hasNext() ) {
+      while (sc.hasNext()) {
         records.add(sc.nextLine());
       }
       sc.close();

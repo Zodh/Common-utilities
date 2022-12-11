@@ -1,6 +1,7 @@
 package io.github.zodh.infrastructure.io.input;
 
 import io.github.zodh.infrastructure.io.FileExtension;
+import io.github.zodh.infrastructure.io.InvalidFileException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -22,15 +23,16 @@ public class CSVReader extends FileReader {
     this.delimiter = customDelimiter;
   }
 
-  public CSVReader() {}
+  public CSVReader() {
+  }
 
   @Override
-  public Boolean isValidFile(File file) {
+  protected Boolean isValidFile(File file) {
     return file != null && getFileExtension(file) == FileExtension.CSV;
   }
 
   @Override
-  public Object read(File file) {
+  protected Object read(File file) {
     checkIfIsValidCSVFile(file);
     try {
       StringBuilder sb = new StringBuilder();
@@ -48,7 +50,7 @@ public class CSVReader extends FileReader {
 
   protected void checkIfIsValidCSVFile(final File file) {
     if (isInvalidFile(file)) {
-      throw new RuntimeException(ONLY_CSV);
+      throw new InvalidFileException(file, ONLY_CSV);
     }
   }
 

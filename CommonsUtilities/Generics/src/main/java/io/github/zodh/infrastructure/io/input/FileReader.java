@@ -2,21 +2,22 @@ package io.github.zodh.infrastructure.io.input;
 
 import io.github.zodh.infrastructure.io.FileExtension;
 import io.github.zodh.infrastructure.io.InvalidFileException;
-
 import java.io.File;
 
-public abstract class FileReader implements Reader {
+public abstract class FileReader<T> implements Reader<T> {
 
   protected File file;
 
-  protected FileReader (File file) {
+  protected FileReader(File file) {
     if (file != null && !file.canRead()) {
-      throw new IllegalArgumentException("The input file cannot be read. Make sure you have the necessary permissions to read the file.");
+      throw new IllegalArgumentException(
+          "The input file cannot be read. Make sure you have the necessary permissions to read the file.");
     }
     this.file = file;
   }
 
-  protected FileReader() {}
+  protected FileReader() {
+  }
 
   public Object getContent(final File file) {
     if (file == null) {
@@ -46,7 +47,8 @@ public abstract class FileReader implements Reader {
     try {
       return FileExtension.fromValue(result);
     } catch (Exception exception) {
-      throw new IllegalArgumentException(String.format("Unhandled file extension: %s or %s", fourLen, fiveLen));
+      throw new IllegalArgumentException(
+          String.format("Unhandled file extension: %s or %s", fourLen, fiveLen));
     }
   }
 
@@ -54,9 +56,11 @@ public abstract class FileReader implements Reader {
     return "File name: " + file.getName();
   }
 
-  public abstract Boolean isValidFile(final File file);
+  protected abstract Boolean isValidFile(final File file);
 
-  public Boolean isInvalidFile(final File file) {
+  protected Boolean isInvalidFile(final File file) {
     return !isValidFile(file);
   }
+
+  protected abstract T read(File file);
 }
