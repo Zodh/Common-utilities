@@ -13,6 +13,10 @@ public class TXTEditor extends FileEditor<String> {
     super(content);
   }
 
+  public TXTEditor() {
+    super();
+  }
+
   @Override
   protected Boolean isValidContent(String content) {
     return StringUtils.isNotBlank(content);

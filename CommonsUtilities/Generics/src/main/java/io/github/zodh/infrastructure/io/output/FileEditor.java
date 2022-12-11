@@ -8,13 +8,22 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class FileEditor<T> implements Writer<T> {
 
-  private final T content;
+  private T content;
 
   protected FileEditor(T content) {
     if (isNull(content)) {
       throw new NullPointerException("Content can not be null");
     }
     this.content = content;
+  }
+
+  public FileEditor() {
+    this.content = null;
+  }
+
+  public FileEditor<T> attachContent(T content) {
+    this.content = content;
+    return this;
   }
 
   public void postContentTo(final String path) {
