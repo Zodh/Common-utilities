@@ -1,38 +1,30 @@
 package io.github.zodh.infrastructure.io.output;
 
 import io.github.zodh.infrastructure.io.InvalidFileException;
-
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
+import org.apache.commons.lang3.StringUtils;
 
 public class TXTEditor extends FileEditor<String> {
 
+  public TXTEditor(String content) {
+    super(content);
+  }
 
-    protected TXTEditor(String source) {
-        super(source);
+  @Override
+  protected Boolean isValidContent(String content) {
+    return StringUtils.isNotBlank(content);
+  }
+
+  @Override
+  protected void write(String data, File file) {
+    try (var fileOutputStream = new FileOutputStream(file)) {
+      fileOutputStream.write(data.getBytes(StandardCharsets.UTF_8));
+    } catch (Exception exception) {
+      throw new InvalidFileException(file,
+          "Error trying to write in the file. " + exception.getMessage());
     }
+  }
 
-    @Override
-    public Boolean isValidSource(String source) {
-        return null;
-    }
-
-    @Override
-    public void write(String data, String path) {
-        File file = new File(path);
-        if (!file.exists()) {
-            throw new InvalidFileException(file, "There is no file on this path");
-        }
-        try {
-            var fw = new FileWriter(file);
-
-        } catch (Exception exception) {
-            throw new RuntimeException("Error trying to write in the file. " + exception.getMessage());
-        }
-    }
-
-    @Override
-    public void append(String data, String path) {
-
-    }
 }
