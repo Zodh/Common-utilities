@@ -21,7 +21,7 @@ public class CSVReaderTest {
   @DisplayName("Should read a CSV file")
   void givenCSVFileWhenCallReadMethodThenReturnFileContent() {
     final File file = new File("src\\test\\resources\\teste.csv");
-    String content = (String) csvReader.getContent(file);
+    String content = (String) csvReader.getContentFrom(file);
     assertThat(content).isEqualTo("felipec;author");
   }
 

@@ -17,14 +17,17 @@ public abstract class FileEditor<T> implements Writer<T> {
     this.content = content;
   }
 
-  public void postContent(final String path) {
+  public void postContentTo(final String path) {
     if (StringUtils.isBlank(path)) {
       throw new IllegalArgumentException("Invalid path");
     }
+    postContentTo(new File(path));
+  }
+
+  public void postContentTo(File file) {
     if (isInvalidContent(this.content)) {
       throw new IllegalArgumentException("Invalid content");
     }
-    File file = new File(path);
     if (!file.exists()) {
       throw new InvalidFileException(file, "There is no file on this path");
     }

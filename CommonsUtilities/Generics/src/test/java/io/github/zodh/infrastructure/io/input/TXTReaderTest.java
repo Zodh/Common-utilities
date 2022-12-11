@@ -22,7 +22,7 @@ public class TXTReaderTest {
   @DisplayName("Should read a TXT file")
   void givenCSVFileWhenCallReadMethodThenReturnFileContent() {
     final File file = new File("src/test/resources/teste.txt");
-    String content = (String) txtReader.getContent(file);
+    String content = (String) txtReader.getContentFrom(file);
     assertThat(content).isEqualTo("felipec;author");
   }
 

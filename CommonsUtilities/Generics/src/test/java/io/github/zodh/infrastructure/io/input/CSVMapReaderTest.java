@@ -23,7 +23,7 @@ public class CSVMapReaderTest {
   @DisplayName("Should read a CSV file as map")
   void givenCSVFileWhenCallReadCsvAsMapMethodThenReturnFileContentAsMap() {
     final File file = new File("src\\test\\resources\\teste.csv");
-    Map<String, String> content = (HashMap<String, String>) csvReader.getContent(file);
+    Map<String, String> content = (HashMap<String, String>) csvReader.getContentFrom(file);
     assertThat(content).containsKey("felipec");
     assertThat(content.get("felipec")).isEqualTo("author");
   }

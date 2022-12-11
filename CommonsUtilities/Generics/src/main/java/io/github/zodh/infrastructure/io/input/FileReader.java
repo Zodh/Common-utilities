@@ -19,11 +19,15 @@ public abstract class FileReader<T> implements Reader<T> {
   protected FileReader() {
   }
 
-  public Object getContent(final File file) {
+  public Object getContentFrom(final File file) {
     if (file == null) {
       throw new NullPointerException("File is null");
     }
     return read(file);
+  }
+
+  public Object getContentFrom(final String path) {
+    return getContentFrom(new File(path));
   }
 
   public Object getContent() {
@@ -33,7 +37,7 @@ public abstract class FileReader<T> implements Reader<T> {
     if (isInvalidFile(this.file)) {
       throw new InvalidFileException(file);
     }
-    return getContent(this.file);
+    return getContentFrom(this.file);
   }
 
   protected FileExtension getFileExtension(final File file) {
