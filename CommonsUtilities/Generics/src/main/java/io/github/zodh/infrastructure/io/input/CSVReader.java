@@ -1,5 +1,7 @@
 package io.github.zodh.infrastructure.io.input;
 
+import static io.github.zodh.infrastructure.io.FileExtension.getFileExtension;
+
 import io.github.zodh.infrastructure.io.FileExtension;
 import io.github.zodh.infrastructure.io.InvalidFileException;
 import java.io.File;
