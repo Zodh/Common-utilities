@@ -50,7 +50,8 @@ class DateUtilsTest {
     var result = DateUtils.fromISO8601TimestampToEpochTime(iso8601Timestamp);
     var resultAsLong = Long.parseLong(result);
     var resultAsInstant = Instant.ofEpochSecond(resultAsLong);
-    var localDateTime = LocalDateTime.ofInstant(resultAsInstant, ZoneId.of(DateUtils.ZONE_ID_ETC_UTC));
+    var localDateTime = LocalDateTime.ofInstant(resultAsInstant,
+        ZoneId.of(DateUtils.ZONE_ID_ETC_UTC));
     // assert
     assertThat(result).isNotNull();
     assertThat(localDateTime.getDayOfMonth()).isEqualTo(25);
@@ -66,7 +67,8 @@ class DateUtilsTest {
   void givenMethodCallWhenNeedNowTimestampAsDDMMYYYYThenReturnNowDDMMYYYAsString() {
     // arrange and act
     var result = DateUtils.getStringDateNowAsDDMMYYYY();
-    var resultAsLocalDate = LocalDate.parse(result, new DateTimeFormatterBuilder().appendPattern(DateUtils.DD_MM_YYYY_PATTERN).toFormatter());
+    var resultAsLocalDate = LocalDate.parse(result,
+        new DateTimeFormatterBuilder().appendPattern(DateUtils.DD_MM_YYYY_PATTERN).toFormatter());
     // assert
     assertThat(resultAsLocalDate).isNotNull();
     assertThat(resultAsLocalDate.getDayOfMonth()).isEqualTo(LocalDate.now().getDayOfMonth());
@@ -79,7 +81,8 @@ class DateUtilsTest {
   void givenMethodCallWithDayAsParametersWhenNeedNowTimestampAsDDMMYYYYThenReturnNowDDMMYYYAsString() {
     // arrange and act
     var result = DateUtils.getStringDateAsDDMMYYYY(16, Month.JANUARY.getValue(), 2001);
-    var resultAsLocalDate = LocalDate.parse(result, new DateTimeFormatterBuilder().appendPattern(DateUtils.DD_MM_YYYY_PATTERN).toFormatter());
+    var resultAsLocalDate = LocalDate.parse(result,
+        new DateTimeFormatterBuilder().appendPattern(DateUtils.DD_MM_YYYY_PATTERN).toFormatter());
     // assert
     assertThat(resultAsLocalDate).isNotNull();
     assertThat(resultAsLocalDate.getDayOfMonth()).isEqualTo(16);

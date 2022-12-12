@@ -1,7 +1,6 @@
 package io.github.zodh.infrastructure.io;
 
 import java.io.File;
-import java.util.List;
 
 public enum FileExtension {
 

@@ -1,10 +1,10 @@
 package io.github.zodh.infrastructure.io.input;
 
-import io.github.zodh.infrastructure.io.FileExtension;
 import io.github.zodh.infrastructure.io.InvalidFileException;
+import io.github.zodh.infrastructure.io.file.types.FileData;
 import java.io.File;
 
-public abstract class FileReader<T> implements Reader<T> {
+public abstract class FileReader<T extends FileData> implements Reader<T> {
 
   protected File file;
 
@@ -19,25 +19,25 @@ public abstract class FileReader<T> implements Reader<T> {
   protected FileReader() {
   }
 
-  public Object getContentFrom(final File file) {
+  public T deserializeFileAsObject(final File file) {
     if (file == null) {
       throw new NullPointerException("File is null");
     }
     return read(file);
   }
 
-  public Object getContentFrom(final String path) {
-    return getContentFrom(new File(path));
+  public T deserializeFileAsObject(final String path) {
+    return deserializeFileAsObject(new File(path));
   }
 
-  public Object getContent() {
+  public T getDeserializedObject() {
     if (this.file == null) {
       throw new NullPointerException("File was not loaded in Reader constructor");
     }
     if (isInvalidFile(this.file)) {
       throw new InvalidFileException(file);
     }
-    return getContentFrom(this.file);
+    return deserializeFileAsObject(this.file);
   }
 
   protected String getFileName(final File file) {

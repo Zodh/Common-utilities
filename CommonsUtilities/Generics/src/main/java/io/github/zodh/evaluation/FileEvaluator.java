@@ -4,12 +4,13 @@ import java.io.File;
 
 public class FileEvaluator {
 
-    public static String getFileInformation(final File file) {
-        String sb = "The file " + file.getName() + " is not valid. \n" +
-                "Path: " + file.getAbsolutePath() + " (absolute path) \n" +
-                "Exists? " + file.exists() + "\n" +
-                "Read: " + file.canRead() + " - Write: " + file.canWrite() + " - Execute: " + file.canExecute();
-        return sb;
-    }
+  public static String getFileInformation(final File file) {
+    String sb = "The file " + file.getName() + " is not valid. \n" +
+        "Path: " + file.getAbsolutePath() + " (absolute path) \n" +
+        "Exists? " + file.exists() + "\n" +
+        "Read: " + file.canRead() + " - Write: " + file.canWrite() + " - Execute: "
+        + file.canExecute();
+    return sb;
+  }
 
 }

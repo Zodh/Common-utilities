@@ -1,17 +1,18 @@
 package io.github.zodh.infrastructure.io.input;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import io.github.zodh.infrastructure.io.InvalidFileException;
+import io.github.zodh.infrastructure.io.file.types.TextFileData;
+import java.io.File;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class TXTReaderTest {
 
-  private FileReader txtReader;
+  private FileReader<TextFileData> txtReader;
 
   @BeforeEach
   void init() {
@@ -22,7 +23,8 @@ public class TXTReaderTest {
   @DisplayName("Should read a TXT file")
   void givenCSVFileWhenCallReadMethodThenReturnFileContent() {
     final File file = new File("src/test/resources/teste.txt");
-    String content = (String) txtReader.getContentFrom(file);
+    final TextFileData textFileData = (txtReader.deserializeFileAsObject(file));
+    String content = textFileData.getContent();
     assertThat(content).isEqualTo("felipec;author");
   }
 
@@ -30,8 +32,8 @@ public class TXTReaderTest {
   @DisplayName("Should not read CSV File and should throws exception")
   void givenTXTFileWhenCallReadMethodThenThrowsException() {
     final File file = new File("src/test/resources/teste.csv");
-    var exc = assertThrows(RuntimeException.class, () -> txtReader.read(file));
-    System.out.println(exc.getMessage());
+    txtReader = new TXTReader(file);
+    assertThrows(InvalidFileException.class, () -> txtReader.getDeserializedObject());
   }
 
 }

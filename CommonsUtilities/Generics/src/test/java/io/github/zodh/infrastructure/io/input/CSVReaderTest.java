@@ -3,6 +3,7 @@ package io.github.zodh.infrastructure.io.input;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import io.github.zodh.infrastructure.io.InvalidFileException;
 import java.io.File;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +22,7 @@ public class CSVReaderTest {
   @DisplayName("Should read a CSV file")
   void givenCSVFileWhenCallReadMethodThenReturnFileContent() {
     final File file = new File("src\\test\\resources\\teste.csv");
-    String content = (String) csvReader.getContentFrom(file);
+    String content = csvReader.deserializeFileAsObject(file).getContent();
     assertThat(content).isEqualTo("felipec;author");
   }
 
@@ -29,7 +30,8 @@ public class CSVReaderTest {
   @DisplayName("Should not read TXT File and should throws exception")
   void givenTXTFileWhenCallReadMethodThenThrowsException() {
     final File file = new File("src\\test\\resources\\teste.txt");
-    assertThrows(RuntimeException.class, () -> csvReader.read(file));
+    csvReader = new CSVReader(file);
+    assertThrows(InvalidFileException.class, () -> csvReader.getDeserializedObject());
   }
 
 }

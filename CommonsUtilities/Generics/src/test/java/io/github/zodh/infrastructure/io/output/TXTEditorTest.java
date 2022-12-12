@@ -15,7 +15,7 @@ public class TXTEditorTest {
     final String expected = "testing...";
     var file = new File("src/test/resources/teste-escrito.txt");
     new TXTEditor("testing...").postContentTo(file);
-    var result = new TXTReader(file).getContent();
+    var result = new TXTReader(file).getDeserializedObject().getContent();
     assertThat(result).isEqualTo(expected);
   }
 
@@ -25,7 +25,7 @@ public class TXTEditorTest {
     final String expected = "testing...";
     var file = new File("src/test/resources/teste-escrito.txt");
     new TXTEditor().attachContent("testing...").postContentTo(file);
-    var result = new TXTReader(file).getContent();
+    var result = new TXTReader(file).getDeserializedObject().getContent();
     assertThat(result).isEqualTo(expected);
   }
 

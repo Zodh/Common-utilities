@@ -3,13 +3,10 @@ package io.github.zodh.infrastructure.io.input;
 import static io.github.zodh.infrastructure.io.FileExtension.getFileExtension;
 
 import io.github.zodh.infrastructure.io.FileExtension;
+import io.github.zodh.infrastructure.io.file.types.TextFileData;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.InputMismatchException;
 
-public class TXTReader extends FileReader {
+public class TXTReader extends FileReader<TextFileData> {
 
   public TXTReader(File file) {
     super(file);
@@ -24,18 +21,11 @@ public class TXTReader extends FileReader {
 
   @Override
   protected Boolean isValidFile(File file) {
-    return file != null && getFileExtension(file) == FileExtension.TXT;
+    return getFileExtension(file) == FileExtension.TXT;
   }
 
   @Override
-  protected Object read(File file) {
-    if (isInvalidFile(file)) {
-      throw new IllegalArgumentException("Invalid file. This reader only accepts .txt file");
-    }
-    try (var fis = new FileInputStream(file)) {
-      return new String(fis.readAllBytes(), StandardCharsets.UTF_8);
-    } catch (IOException e) {
-      throw new InputMismatchException("Error trying to read the file.");
-    }
+  protected TextFileData read(File file) {
+    return new TextFileData(file);
   }
 }
