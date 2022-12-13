@@ -12,6 +12,7 @@
     <module>Observer</module>
     <module>Generics</module>
     <module>EmailSender</module>
+    <module>Web</module>
   </modules>
 
   <parent>
