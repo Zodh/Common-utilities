@@ -1,7 +1,7 @@
-package io.github.zodh.infrastructure.io.output;
+package io.github.zodh.io.output;
 
-import io.github.zodh.infrastructure.io.FileExtension;
-import io.github.zodh.infrastructure.io.InvalidFileException;
+import io.github.zodh.io.FileExtension;
+import io.github.zodh.io.InvalidFileException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;

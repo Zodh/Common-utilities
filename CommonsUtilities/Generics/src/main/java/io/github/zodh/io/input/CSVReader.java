@@ -1,9 +1,7 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
-import static io.github.zodh.infrastructure.io.FileExtension.getFileExtension;
-
-import io.github.zodh.infrastructure.io.FileExtension;
-import io.github.zodh.infrastructure.io.file.types.CsvFileData;
+import io.github.zodh.io.FileExtension;
+import io.github.zodh.io.file.types.CsvFileData;
 import java.io.File;
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,7 +23,7 @@ public class CSVReader extends FileReader<CsvFileData> {
 
   @Override
   protected Boolean isValidFile(File file) {
-    return getFileExtension(file) == FileExtension.CSV;
+    return FileExtension.getFileExtension(file) == FileExtension.CSV;
   }
 
   @Override

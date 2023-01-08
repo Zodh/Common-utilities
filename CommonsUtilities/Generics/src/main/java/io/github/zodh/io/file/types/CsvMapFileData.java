@@ -1,6 +1,6 @@
-package io.github.zodh.infrastructure.io.file.types;
+package io.github.zodh.io.file.types;
 
-import io.github.zodh.infrastructure.io.InvalidFileException;
+import io.github.zodh.io.InvalidFileException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

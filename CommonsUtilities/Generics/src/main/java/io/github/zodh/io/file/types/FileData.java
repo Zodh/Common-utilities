@@ -1,6 +1,6 @@
-package io.github.zodh.infrastructure.io.file.types;
+package io.github.zodh.io.file.types;
 
-import io.github.zodh.infrastructure.io.FileExtension;
+import io.github.zodh.io.FileExtension;
 import java.io.File;
 
 public abstract class FileData {

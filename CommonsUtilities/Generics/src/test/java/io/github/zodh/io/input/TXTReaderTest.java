@@ -1,10 +1,10 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import io.github.zodh.infrastructure.io.InvalidFileException;
-import io.github.zodh.infrastructure.io.file.types.TextFileData;
+import io.github.zodh.io.InvalidFileException;
+import io.github.zodh.io.file.types.TextFileData;
 import java.io.File;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,8 +1,8 @@
-package io.github.zodh.infrastructure.io.output;
+package io.github.zodh.io.output;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.zodh.infrastructure.io.input.TXTReader;
+import io.github.zodh.io.input.TXTReader;
 import java.io.File;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

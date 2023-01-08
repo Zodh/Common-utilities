@@ -1,7 +1,7 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
-import io.github.zodh.infrastructure.io.InvalidFileException;
-import io.github.zodh.infrastructure.io.file.types.FileData;
+import io.github.zodh.io.InvalidFileException;
+import io.github.zodh.io.file.types.FileData;
 import java.io.File;
 
 public abstract class FileReader<T extends FileData> implements Reader<T> {

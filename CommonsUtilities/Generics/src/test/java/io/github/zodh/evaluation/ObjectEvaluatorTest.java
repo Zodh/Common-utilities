@@ -2,7 +2,7 @@ package io.github.zodh.evaluation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.github.zodh.infrastructure.io.input.CSVMapReader;
+import io.github.zodh.io.input.CSVMapReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

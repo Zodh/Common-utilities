@@ -1,4 +1,4 @@
-package io.github.zodh.infrastructure.io;
+package io.github.zodh.io;
 
 import io.github.zodh.evaluation.FileEvaluator;
 import java.io.File;

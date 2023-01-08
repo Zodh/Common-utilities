@@ -1,8 +1,8 @@
-package io.github.zodh.infrastructure.io.output;
+package io.github.zodh.io.output;
 
 import static io.github.zodh.evaluation.ObjectEvaluator.isNull;
 
-import io.github.zodh.infrastructure.io.InvalidFileException;
+import io.github.zodh.io.InvalidFileException;
 import java.io.File;
 import org.apache.commons.lang3.StringUtils;
 

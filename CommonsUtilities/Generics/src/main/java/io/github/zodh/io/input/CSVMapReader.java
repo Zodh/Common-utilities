@@ -1,9 +1,9 @@
-package io.github.zodh.infrastructure.io.input;
+package io.github.zodh.io.input;
 
-import static io.github.zodh.infrastructure.io.FileExtension.getFileExtension;
+import static io.github.zodh.io.FileExtension.getFileExtension;
 
-import io.github.zodh.infrastructure.io.FileExtension;
-import io.github.zodh.infrastructure.io.file.types.CsvMapFileData;
+import io.github.zodh.io.FileExtension;
+import io.github.zodh.io.file.types.CsvMapFileData;
 import java.io.File;
 import org.apache.commons.lang3.StringUtils;
 
